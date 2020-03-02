@@ -9,22 +9,46 @@ namespace AudioVisualization
         public static readonly int FrequencyBandCount = 8;
 
         public static float[] Samples { get; private set; } = null;
-        public static float[] FrequencyBands = null;
+        public static float[] FrequencyBands { get; private set; } = null;
+        public static float[] BandBuffers { get; private set; } = null;
 
         private AudioSource _audioSource = null;
+
+        private float[] _bufferDecrease = null;
 
         private void Awake()
         {
             _audioSource = GetComponent<AudioSource>();
+            _bufferDecrease = new float[FrequencyBandCount];
 
             Samples = new float[SampleCount];
             FrequencyBands = new float[FrequencyBandCount];
+            BandBuffers = new float[FrequencyBandCount];
         }
 
         private void Update()
         {
             GetSpectrumAudioSource();
             CreateFrequencyBands();
+            BandBuffer();
+        }
+
+        private void BandBuffer()
+        {
+            for (int i = 0; i < FrequencyBandCount; i++)
+            {
+                if (FrequencyBands[i] > BandBuffers[i])
+                {
+                    BandBuffers[i] = FrequencyBands[i];
+                    _bufferDecrease[i] = 0.005f;
+                }
+
+                if (FrequencyBands[i] < BandBuffers[i])
+                {
+                    BandBuffers[i] -= _bufferDecrease[i];
+                    _bufferDecrease[i] *= 1.2f;
+                }
+            }
         }
 
         private void GetSpectrumAudioSource()

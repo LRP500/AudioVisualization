@@ -13,10 +13,14 @@ namespace AudioVisualization
         [SerializeField]
         private float _scaleMultiplier = 1f;
 
+        [SerializeField]
+        private bool _useBuffer = true;
+
         private void Update()
         {
-            float height = (AudioPeer.FrequencyBands[_band] * _scaleMultiplier) + _initialScale;
-            transform.localScale = new Vector3(transform.localScale.x, height, transform.localScale.z);    
+            float sample = _useBuffer ? AudioPeer.BandBuffers[_band] : AudioPeer.FrequencyBands[_band];
+            float scaleY = (sample * _scaleMultiplier) + _initialScale;
+            transform.localScale = new Vector3(transform.localScale.x, scaleY, transform.localScale.z);    
         }
     }
 }

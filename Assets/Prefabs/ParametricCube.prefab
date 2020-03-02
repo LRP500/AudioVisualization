@@ -113,5 +113,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _band: 0
-  _initialScale: 1
-  _scaleMultiplier: 10
+  _initialScale: 0
+  _scaleMultiplier: 20
+  _useBuffer: 1
