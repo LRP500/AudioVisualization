@@ -16,11 +16,23 @@ namespace AudioVisualization
         [SerializeField]
         private bool _useBuffer = true;
 
+        private Material _material = null;
+
+        private void Awake()
+        {
+            _material = GetComponent<MeshRenderer>().material;
+        }
+
         private void Update()
         {
-            float sample = _useBuffer ? AudioPeer.BandBuffers[_band] : AudioPeer.FrequencyBands[_band];
+            float sample = _useBuffer ? AudioPeer.FrequencyBandBuffers[_band] : AudioPeer.FrequencyBands[_band];
             float scaleY = (sample * _scaleMultiplier) + _initialScale;
-            transform.localScale = new Vector3(transform.localScale.x, scaleY, transform.localScale.z);    
+
+            /// Scale
+            transform.localScale = new Vector3(transform.localScale.x, scaleY, transform.localScale.z);
+
+            /// Emission
+            _material.SetColor("_EmissionColor", new Color(sample, sample, sample));
         }
     }
 }

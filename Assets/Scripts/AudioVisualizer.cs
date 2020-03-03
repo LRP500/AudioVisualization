@@ -14,7 +14,10 @@ namespace AudioVisualization
 
         private void Awake()
         {
-            InstantiateSampleViews();
+            if (_sampleViewPrefab)
+            {
+                InstantiateSampleViews();
+            }
         }
 
         private void Update()

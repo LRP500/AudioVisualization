@@ -9,21 +9,32 @@ namespace AudioVisualization
         public static readonly int FrequencyBandCount = 8;
 
         public static float[] Samples { get; private set; } = null;
+
         public static float[] FrequencyBands { get; private set; } = null;
-        public static float[] BandBuffers { get; private set; } = null;
+        public static float[] FrequencyBandBuffers { get; private set; } = null;
+
+        public static float[] AudioBands { get; private set; } = null;
+        public static float[] AudioBandBuffers { get; private set; } = null;
 
         private AudioSource _audioSource = null;
 
         private float[] _bufferDecrease = null;
+        private float[] _frequencyBandHighests = null;
 
         private void Awake()
         {
             _audioSource = GetComponent<AudioSource>();
+
             _bufferDecrease = new float[FrequencyBandCount];
+            _frequencyBandHighests = new float[FrequencyBandCount];
 
             Samples = new float[SampleCount];
+
             FrequencyBands = new float[FrequencyBandCount];
-            BandBuffers = new float[FrequencyBandCount];
+            FrequencyBandBuffers = new float[FrequencyBandCount];
+
+            AudioBands = new float[FrequencyBandCount];
+            AudioBandBuffers = new float[FrequencyBandCount];
         }
 
         private void Update()
@@ -31,21 +42,36 @@ namespace AudioVisualization
             GetSpectrumAudioSource();
             CreateFrequencyBands();
             BandBuffer();
+            CreateAudioBands();
+        }
+
+        private void CreateAudioBands()
+        {
+            for (int i = 0; i < FrequencyBandCount; i++)
+            {
+                if (FrequencyBands[i] > _frequencyBandHighests[i])
+                {
+                    _frequencyBandHighests[i] = FrequencyBands[i];
+                }
+
+                AudioBands[i] = FrequencyBands[i] / _frequencyBandHighests[i];
+                AudioBandBuffers[i] = (FrequencyBandBuffers[i] / _frequencyBandHighests[i]);
+            }
         }
 
         private void BandBuffer()
         {
             for (int i = 0; i < FrequencyBandCount; i++)
             {
-                if (FrequencyBands[i] > BandBuffers[i])
+                if (FrequencyBands[i] > FrequencyBandBuffers[i])
                 {
-                    BandBuffers[i] = FrequencyBands[i];
+                    FrequencyBandBuffers[i] = FrequencyBands[i];
                     _bufferDecrease[i] = 0.005f;
                 }
 
-                if (FrequencyBands[i] < BandBuffers[i])
+                if (FrequencyBands[i] < FrequencyBandBuffers[i])
                 {
-                    BandBuffers[i] -= _bufferDecrease[i];
+                    FrequencyBandBuffers[i] -= _bufferDecrease[i];
                     _bufferDecrease[i] *= 1.2f;
                 }
             }
