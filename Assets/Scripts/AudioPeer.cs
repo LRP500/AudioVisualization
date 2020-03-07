@@ -1,14 +1,33 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace AudioVisualization
 {
     [RequireComponent(typeof(AudioSource))]
     public class AudioPeer : MonoBehaviour
     {
+        public enum Channel
+        {
+            Stereo,
+            Left,
+            Right
+        }
+
+        /// <summary>
+        /// Average value added to frequency highests at start
+        /// to smooth frequency bands interval gap.
+        /// </summary>
+        [SerializeField]
+        private float _audioProfile = 0f;
+
+        [SerializeField]
+        private Channel _channel = Channel.Stereo;
+
         public static readonly int SampleCount = 512;
         public static readonly int FrequencyBandCount = 8;
 
-        public static float[] Samples { get; private set; } = null;
+        public static float[] LeftSamples { get; private set; } = null;
+        public static float[] RightSamples { get; private set; } = null;
 
         public static float[] FrequencyBands { get; private set; } = null;
         public static float[] FrequencyBandBuffers { get; private set; } = null;
@@ -16,10 +35,14 @@ namespace AudioVisualization
         public static float[] AudioBands { get; private set; } = null;
         public static float[] AudioBandBuffers { get; private set; } = null;
 
+        public static float Amplitude { get; private set; } = 0f;
+        public static float AmplitudeBuffer { get; private set; } = 0f;
+
         private AudioSource _audioSource = null;
 
         private float[] _bufferDecrease = null;
         private float[] _frequencyBandHighests = null;
+        private float _amplitudeHighest = 0f;
 
         private void Awake()
         {
@@ -28,7 +51,8 @@ namespace AudioVisualization
             _bufferDecrease = new float[FrequencyBandCount];
             _frequencyBandHighests = new float[FrequencyBandCount];
 
-            Samples = new float[SampleCount];
+            LeftSamples = new float[SampleCount];
+            RightSamples = new float[SampleCount];
 
             FrequencyBands = new float[FrequencyBandCount];
             FrequencyBandBuffers = new float[FrequencyBandCount];
@@ -37,12 +61,18 @@ namespace AudioVisualization
             AudioBandBuffers = new float[FrequencyBandCount];
         }
 
+        private void Start()
+        {
+            AudioProfile(_audioProfile);
+        }
+
         private void Update()
         {
             GetSpectrumAudioSource();
             CreateFrequencyBands();
-            BandBuffer();
+            FrequencyBandBuffer();
             CreateAudioBands();
+            CalculateAmplitude();
         }
 
         private void CreateAudioBands()
@@ -59,7 +89,36 @@ namespace AudioVisualization
             }
         }
 
-        private void BandBuffer()
+        private void CalculateAmplitude()
+        {
+            float currentAmplitude = 0f;
+            float currentAmplitudeBuffer = 0f;
+
+            for (int i = 0; i < FrequencyBandCount; i++)
+            {
+                currentAmplitude += AudioBands[i];
+                currentAmplitudeBuffer += AudioBandBuffers[i];
+            }
+
+            _amplitudeHighest = Mathf.Max(_amplitudeHighest, currentAmplitude);
+            Amplitude = currentAmplitude / _amplitudeHighest;
+            AmplitudeBuffer = currentAmplitudeBuffer / _amplitudeHighest;
+        }
+
+        /// <summary>
+        /// Smooth frequency bands interval gap on first few seconds
+        /// of the simulation by initializing their highests to an average value.
+        /// </summary>
+        /// <param name="value"></param>
+        private void AudioProfile(float value)
+        {
+            for (int i = 0; i < FrequencyBandCount; i++)
+            {
+                _frequencyBandHighests[i] = value;
+            }
+        }
+
+        private void FrequencyBandBuffer()
         {
             for (int i = 0; i < FrequencyBandCount; i++)
             {
@@ -79,7 +138,8 @@ namespace AudioVisualization
 
         private void GetSpectrumAudioSource()
         {
-            _audioSource.GetSpectrumData(Samples, 0, FFTWindow.Blackman);
+            _audioSource.GetSpectrumData(LeftSamples, 0, FFTWindow.Blackman);
+            _audioSource.GetSpectrumData(RightSamples, 1, FFTWindow.Blackman);
         }
 
         private void CreateFrequencyBands()
@@ -119,7 +179,22 @@ namespace AudioVisualization
 
                 for (int j = 0; j < sampleCount; j++)
                 {
-                    average += Samples[count] * (count + 1);
+                    /// Stereo
+                    if (_channel == Channel.Stereo)
+                    {
+                        average += (LeftSamples[count] + RightSamples[count]) * (count + 1);
+                    }
+                    /// Left 
+                    else if (_channel == Channel.Left)
+                    {
+                        average += LeftSamples[count] * (count + 1);
+                    }
+                    /// Right
+                    else if (_channel == Channel.Right)
+                    {
+                        average += RightSamples[count] * (count + 1);
+                    }
+
                     count++;
                 }
 
