@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Audio;
 
 namespace AudioVisualization
 {
@@ -24,7 +25,23 @@ namespace AudioVisualization
         [SerializeField]
         private Channel _channel = Channel.Stereo;
 
+        [SerializeField]
+        private AudioClip _audioClip = null;
+
+        [SerializeField]
+        private bool _useMicrophone = false;
+
+        [SerializeField]
+        private string _inputDevice = string.Empty;
+
+        [SerializeField]
+        public AudioMixerGroup _microphoneGroup = null;
+
+        [SerializeField]
+        public AudioMixerGroup _masterGroup = null;
+
         private AudioSource _audioSource = null;
+        private AudioSource _microphoneInput = null;
 
         private float[] _leftSamples = new float[SampleCount];
         private float[] _rightSamples = new float[SampleCount];
@@ -51,26 +68,56 @@ namespace AudioVisualization
 
         private void Awake()
         {
-            _audioSource = GetComponent<AudioSource>();
-
             AudioBands = new float[8];
             AudioBandBuffers = new float[8];
             AudioBands64 = new float[64];
             AudioBandBuffers64 = new float[64];
 
             AudioProfile(_audioProfile);
+
+            InitializeAudioInput();
         }
 
         private void Update()
         {
             GetSpectrumAudioSource();
+
             CreateFrequencyBands();
-            CreateFrequencyBands64();
             FrequencyBandBuffer();
-            FrequencyBandBuffer64();
             CreateAudioBands();
+
+            CreateFrequencyBands64();
+            FrequencyBandBuffer64();
             CreateAudioBands64();
+
             CalculateAmplitude();
+        }
+
+        private void InitializeAudioInput()
+        {
+            _audioSource = GetComponent<AudioSource>();
+
+            if (_useMicrophone)
+            {
+                if (Microphone.devices.Length > 0)
+                {
+                    _inputDevice = Microphone.devices[0].ToString();
+                    _audioSource.outputAudioMixerGroup = _microphoneGroup;
+                    _audioSource.clip = Microphone.Start(_inputDevice, true, 1000, AudioSettings.outputSampleRate);
+                }
+                else
+                {
+                    _useMicrophone = false;
+                    _audioSource.outputAudioMixerGroup = _masterGroup;
+                }
+            }
+            else
+            {
+                _audioSource.clip = _audioClip;
+                _audioSource.outputAudioMixerGroup = _masterGroup;
+            }
+
+            _audioSource.Play();
         }
 
         private void CreateAudioBands()
