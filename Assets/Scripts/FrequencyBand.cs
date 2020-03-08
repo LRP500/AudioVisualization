@@ -5,6 +5,9 @@ namespace AudioVisualization
     public class FrequencyBand : MonoBehaviour
     {
         [SerializeField]
+        private AudioPeer _audioPeer = null;
+
+        [SerializeField]
         private int _band = 0;
 
         [SerializeField]
@@ -25,7 +28,7 @@ namespace AudioVisualization
 
         private void Update()
         {
-            float sample = _useBuffer ? AudioPeer.FrequencyBandBuffers[_band] : AudioPeer.FrequencyBands[_band];
+            float sample = _useBuffer ? _audioPeer.AudioBandBuffers[_band] : _audioPeer.AudioBands[_band];
             float scaleY = (sample * _scaleMultiplier) + _initialScale;
 
             /// Scale

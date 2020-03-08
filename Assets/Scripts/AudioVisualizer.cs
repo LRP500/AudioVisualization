@@ -5,6 +5,9 @@ namespace AudioVisualization
     public class AudioVisualizer : MonoBehaviour
     {
         [SerializeField]
+        private AudioPeer _audioPeer = null;
+
+        [SerializeField]
         private GameObject _sampleViewPrefab = null;
 
         [SerializeField]
@@ -26,7 +29,7 @@ namespace AudioVisualization
             {
                 for (int i = 0; i < AudioPeer.SampleCount; i++)
                 {
-                    Vector3 scale = new Vector3(10, ((AudioPeer.LeftSamples[i] + AudioPeer.RightSamples[i]) * _maxScale) + 2, 10);
+                    Vector3 scale = new Vector3(10, ((_audioPeer.AudioBands[i]) * _maxScale) + 2, 10);
                     _sampleViews[i].transform.localScale = scale;
                 }
             }

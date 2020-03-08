@@ -6,6 +6,9 @@ namespace AudioVisualization
     public class AudioControlledLight : MonoBehaviour
     {
         [SerializeField]
+        private AudioPeer _audioPeer = null;
+
+        [SerializeField]
         private int _band = 0;
 
         [SerializeField]
@@ -23,7 +26,7 @@ namespace AudioVisualization
 
         private void Update()
         {
-            _light.intensity = (AudioPeer.AudioBandBuffers[_band] * (_maxIntensity - _minIntensity)) + _minIntensity;
+            _light.intensity = (_audioPeer.AudioBandBuffers[_band] * (_maxIntensity - _minIntensity)) + _minIntensity;
         }
     }
 }

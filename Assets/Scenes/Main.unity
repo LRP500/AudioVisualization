@@ -320,6 +320,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1d7ab2aa0c217f49ad3d4ede337f543, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _audioPeer: {fileID: 894238801}
   _band: 1
   _minIntensity: 0
   _maxIntensity: 3
@@ -428,6 +429,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1d7ab2aa0c217f49ad3d4ede337f543, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _audioPeer: {fileID: 894238801}
   _band: 1
   _minIntensity: 0
   _maxIntensity: 3
@@ -506,8 +508,13 @@ PrefabInstance:
     - target: {fileID: 8010339045471276992, guid: 451f2b8d82ba24440b78f4a2ac06aa80,
         type: 3}
       propertyPath: _scaleMultiplier
-      value: 8
+      value: 50
       objectReference: {fileID: 0}
+    - target: {fileID: 8010339045471276992, guid: 451f2b8d82ba24440b78f4a2ac06aa80,
+        type: 3}
+      propertyPath: _audioPeer
+      value: 
+      objectReference: {fileID: 894238801}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 451f2b8d82ba24440b78f4a2ac06aa80, type: 3}
 --- !u!4 &227646027 stripped
@@ -628,18 +635,23 @@ PrefabInstance:
     - target: {fileID: 8010339045471276992, guid: 451f2b8d82ba24440b78f4a2ac06aa80,
         type: 3}
       propertyPath: _useBuffer
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8010339045471276992, guid: 451f2b8d82ba24440b78f4a2ac06aa80,
         type: 3}
       propertyPath: _scaleMultiplier
-      value: 15
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 8010339045471276992, guid: 451f2b8d82ba24440b78f4a2ac06aa80,
         type: 3}
       propertyPath: _initialScale
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8010339045471276992, guid: 451f2b8d82ba24440b78f4a2ac06aa80,
+        type: 3}
+      propertyPath: _audioPeer
+      value: 
+      objectReference: {fileID: 894238801}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 451f2b8d82ba24440b78f4a2ac06aa80, type: 3}
 --- !u!4 &333553819 stripped
@@ -791,6 +803,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1d7ab2aa0c217f49ad3d4ede337f543, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _audioPeer: {fileID: 894238801}
   _band: 6
   _minIntensity: 0
   _maxIntensity: 3
@@ -869,8 +882,13 @@ PrefabInstance:
     - target: {fileID: 8010339045471276992, guid: 451f2b8d82ba24440b78f4a2ac06aa80,
         type: 3}
       propertyPath: _scaleMultiplier
-      value: 8
+      value: 50
       objectReference: {fileID: 0}
+    - target: {fileID: 8010339045471276992, guid: 451f2b8d82ba24440b78f4a2ac06aa80,
+        type: 3}
+      propertyPath: _audioPeer
+      value: 
+      objectReference: {fileID: 894238801}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 451f2b8d82ba24440b78f4a2ac06aa80, type: 3}
 --- !u!4 &691896294 stripped
@@ -954,8 +972,13 @@ PrefabInstance:
     - target: {fileID: 8010339045471276992, guid: 451f2b8d82ba24440b78f4a2ac06aa80,
         type: 3}
       propertyPath: _scaleMultiplier
-      value: 8
+      value: 50
       objectReference: {fileID: 0}
+    - target: {fileID: 8010339045471276992, guid: 451f2b8d82ba24440b78f4a2ac06aa80,
+        type: 3}
+      propertyPath: _audioPeer
+      value: 
+      objectReference: {fileID: 894238801}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 451f2b8d82ba24440b78f4a2ac06aa80, type: 3}
 --- !u!4 &713851265 stripped
@@ -1034,8 +1057,18 @@ PrefabInstance:
     - target: {fileID: 8010339045471276992, guid: 451f2b8d82ba24440b78f4a2ac06aa80,
         type: 3}
       propertyPath: _scaleMultiplier
-      value: 8
+      value: 50
       objectReference: {fileID: 0}
+    - target: {fileID: 8010339045471276992, guid: 451f2b8d82ba24440b78f4a2ac06aa80,
+        type: 3}
+      propertyPath: _band
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8010339045471276992, guid: 451f2b8d82ba24440b78f4a2ac06aa80,
+        type: 3}
+      propertyPath: _audioPeer
+      value: 
+      objectReference: {fileID: 894238801}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 451f2b8d82ba24440b78f4a2ac06aa80, type: 3}
 --- !u!4 &738062337 stripped
@@ -1089,6 +1122,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _audioProfile: 2
+  _channel: 0
 --- !u!82 &894238802
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1343,8 +1377,13 @@ PrefabInstance:
     - target: {fileID: 8010339045471276992, guid: 451f2b8d82ba24440b78f4a2ac06aa80,
         type: 3}
       propertyPath: _scaleMultiplier
-      value: 8
+      value: 50
       objectReference: {fileID: 0}
+    - target: {fileID: 8010339045471276992, guid: 451f2b8d82ba24440b78f4a2ac06aa80,
+        type: 3}
+      propertyPath: _audioPeer
+      value: 
+      objectReference: {fileID: 894238801}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 451f2b8d82ba24440b78f4a2ac06aa80, type: 3}
 --- !u!4 &981605012 stripped
@@ -1428,8 +1467,13 @@ PrefabInstance:
     - target: {fileID: 8010339045471276992, guid: 451f2b8d82ba24440b78f4a2ac06aa80,
         type: 3}
       propertyPath: _scaleMultiplier
-      value: 8
+      value: 50
       objectReference: {fileID: 0}
+    - target: {fileID: 8010339045471276992, guid: 451f2b8d82ba24440b78f4a2ac06aa80,
+        type: 3}
+      propertyPath: _audioPeer
+      value: 
+      objectReference: {fileID: 894238801}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 451f2b8d82ba24440b78f4a2ac06aa80, type: 3}
 --- !u!4 &1007490472 stripped
@@ -1611,18 +1655,23 @@ PrefabInstance:
     - target: {fileID: 8010339045471276992, guid: 451f2b8d82ba24440b78f4a2ac06aa80,
         type: 3}
       propertyPath: _useBuffer
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8010339045471276992, guid: 451f2b8d82ba24440b78f4a2ac06aa80,
         type: 3}
       propertyPath: _scaleMultiplier
-      value: 15
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 8010339045471276992, guid: 451f2b8d82ba24440b78f4a2ac06aa80,
         type: 3}
       propertyPath: _initialScale
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8010339045471276992, guid: 451f2b8d82ba24440b78f4a2ac06aa80,
+        type: 3}
+      propertyPath: _audioPeer
+      value: 
+      objectReference: {fileID: 894238801}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 451f2b8d82ba24440b78f4a2ac06aa80, type: 3}
 --- !u!4 &1062384187 stripped
@@ -1710,18 +1759,23 @@ PrefabInstance:
     - target: {fileID: 8010339045471276992, guid: 451f2b8d82ba24440b78f4a2ac06aa80,
         type: 3}
       propertyPath: _useBuffer
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8010339045471276992, guid: 451f2b8d82ba24440b78f4a2ac06aa80,
         type: 3}
       propertyPath: _scaleMultiplier
-      value: 15
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 8010339045471276992, guid: 451f2b8d82ba24440b78f4a2ac06aa80,
         type: 3}
       propertyPath: _initialScale
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8010339045471276992, guid: 451f2b8d82ba24440b78f4a2ac06aa80,
+        type: 3}
+      propertyPath: _audioPeer
+      value: 
+      objectReference: {fileID: 894238801}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 451f2b8d82ba24440b78f4a2ac06aa80, type: 3}
 --- !u!4 &1132064115 stripped
@@ -1759,6 +1813,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c0c7750db0182c4a8e6abb57a1c11ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _audioPeer: {fileID: 0}
   _sampleViewPrefab: {fileID: 0}
   _maxScale: 10000
 --- !u!4 &1138468850
@@ -1950,18 +2005,23 @@ PrefabInstance:
     - target: {fileID: 8010339045471276992, guid: 451f2b8d82ba24440b78f4a2ac06aa80,
         type: 3}
       propertyPath: _useBuffer
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8010339045471276992, guid: 451f2b8d82ba24440b78f4a2ac06aa80,
         type: 3}
       propertyPath: _scaleMultiplier
-      value: 15
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 8010339045471276992, guid: 451f2b8d82ba24440b78f4a2ac06aa80,
         type: 3}
       propertyPath: _initialScale
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8010339045471276992, guid: 451f2b8d82ba24440b78f4a2ac06aa80,
+        type: 3}
+      propertyPath: _audioPeer
+      value: 
+      objectReference: {fileID: 894238801}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 451f2b8d82ba24440b78f4a2ac06aa80, type: 3}
 --- !u!4 &1195910842 stripped
@@ -2175,8 +2235,13 @@ PrefabInstance:
     - target: {fileID: 8010339045471276992, guid: 451f2b8d82ba24440b78f4a2ac06aa80,
         type: 3}
       propertyPath: _scaleMultiplier
-      value: 8
+      value: 50
       objectReference: {fileID: 0}
+    - target: {fileID: 8010339045471276992, guid: 451f2b8d82ba24440b78f4a2ac06aa80,
+        type: 3}
+      propertyPath: _audioPeer
+      value: 
+      objectReference: {fileID: 894238801}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 451f2b8d82ba24440b78f4a2ac06aa80, type: 3}
 --- !u!4 &1537524500 stripped
@@ -2259,18 +2324,23 @@ PrefabInstance:
     - target: {fileID: 8010339045471276992, guid: 451f2b8d82ba24440b78f4a2ac06aa80,
         type: 3}
       propertyPath: _useBuffer
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8010339045471276992, guid: 451f2b8d82ba24440b78f4a2ac06aa80,
         type: 3}
       propertyPath: _scaleMultiplier
-      value: 15
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 8010339045471276992, guid: 451f2b8d82ba24440b78f4a2ac06aa80,
         type: 3}
       propertyPath: _initialScale
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8010339045471276992, guid: 451f2b8d82ba24440b78f4a2ac06aa80,
+        type: 3}
+      propertyPath: _audioPeer
+      value: 
+      objectReference: {fileID: 894238801}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 451f2b8d82ba24440b78f4a2ac06aa80, type: 3}
 --- !u!4 &1704124885 stripped
@@ -2354,8 +2424,13 @@ PrefabInstance:
     - target: {fileID: 8010339045471276992, guid: 451f2b8d82ba24440b78f4a2ac06aa80,
         type: 3}
       propertyPath: _scaleMultiplier
-      value: 8
+      value: 50
       objectReference: {fileID: 0}
+    - target: {fileID: 8010339045471276992, guid: 451f2b8d82ba24440b78f4a2ac06aa80,
+        type: 3}
+      propertyPath: _audioPeer
+      value: 
+      objectReference: {fileID: 894238801}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 451f2b8d82ba24440b78f4a2ac06aa80, type: 3}
 --- !u!4 &1706756123 stripped
@@ -2537,18 +2612,23 @@ PrefabInstance:
     - target: {fileID: 8010339045471276992, guid: 451f2b8d82ba24440b78f4a2ac06aa80,
         type: 3}
       propertyPath: _useBuffer
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8010339045471276992, guid: 451f2b8d82ba24440b78f4a2ac06aa80,
         type: 3}
       propertyPath: _scaleMultiplier
-      value: 15
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 8010339045471276992, guid: 451f2b8d82ba24440b78f4a2ac06aa80,
         type: 3}
       propertyPath: _initialScale
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8010339045471276992, guid: 451f2b8d82ba24440b78f4a2ac06aa80,
+        type: 3}
+      propertyPath: _audioPeer
+      value: 
+      objectReference: {fileID: 894238801}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 451f2b8d82ba24440b78f4a2ac06aa80, type: 3}
 --- !u!4 &2047954936 stripped
@@ -2636,18 +2716,23 @@ PrefabInstance:
     - target: {fileID: 8010339045471276992, guid: 451f2b8d82ba24440b78f4a2ac06aa80,
         type: 3}
       propertyPath: _useBuffer
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8010339045471276992, guid: 451f2b8d82ba24440b78f4a2ac06aa80,
         type: 3}
       propertyPath: _scaleMultiplier
-      value: 15
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 8010339045471276992, guid: 451f2b8d82ba24440b78f4a2ac06aa80,
         type: 3}
       propertyPath: _initialScale
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8010339045471276992, guid: 451f2b8d82ba24440b78f4a2ac06aa80,
+        type: 3}
+      propertyPath: _audioPeer
+      value: 
+      objectReference: {fileID: 894238801}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 451f2b8d82ba24440b78f4a2ac06aa80, type: 3}
 --- !u!4 &2086988908 stripped
@@ -2735,18 +2820,23 @@ PrefabInstance:
     - target: {fileID: 8010339045471276992, guid: 451f2b8d82ba24440b78f4a2ac06aa80,
         type: 3}
       propertyPath: _useBuffer
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8010339045471276992, guid: 451f2b8d82ba24440b78f4a2ac06aa80,
         type: 3}
       propertyPath: _scaleMultiplier
-      value: 15
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 8010339045471276992, guid: 451f2b8d82ba24440b78f4a2ac06aa80,
         type: 3}
       propertyPath: _initialScale
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8010339045471276992, guid: 451f2b8d82ba24440b78f4a2ac06aa80,
+        type: 3}
+      propertyPath: _audioPeer
+      value: 
+      objectReference: {fileID: 894238801}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 451f2b8d82ba24440b78f4a2ac06aa80, type: 3}
 --- !u!4 &2098822261 stripped
