@@ -108,7 +108,6 @@ namespace AudioVisualization
                 else
                 {
                     _useMicrophone = false;
-                    _audioSource.outputAudioMixerGroup = _masterGroup;
                 }
             }
             else
