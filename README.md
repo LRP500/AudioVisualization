@@ -1,2 +1,2 @@
 # AudioVisualization
-Audio visualization for Unity3D
+Audio visualization tools for Unity
